@@ -17,3 +17,10 @@ class BlogPost(models.Model):
     def __str__(self):
         return self.title
     
+class BlogComment(models.Model):
+    name = models.CharField(max_length=25)
+    comment = models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.name
+
