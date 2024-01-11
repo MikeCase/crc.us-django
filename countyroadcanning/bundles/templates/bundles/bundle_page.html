@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="">
+        <div class="">
+            <div class="">
+                <div class="">
+                    <div class="">
+                        <p>{{ bundle.name }}</p>
+                        <p>{{ bundle.description }}</p>
+                    
+                        {% if bundle.products.all|length > 0 %}
+                        <p>This bundle has the following jellies:</p>
+                        <ul>
+                            {% for product in bundle.products.all %}
+                            <li><a href={% url 'product_page' product.id %}>{{ product }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+{% endblock %}

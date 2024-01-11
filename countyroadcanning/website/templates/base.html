@@ -1,0 +1,37 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href={% static 'css/styles.css' %}>
+    {% block head %}
+    {% endblock %}
+        <title>County Road Canning</title>
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.7.0"
+        integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"
+        defer></script>
+  </head>
+  <body>
+    {% include 'components/navbar/navbar.html' %}
+
+    {% comment %} 
+    Include the following line into any template you need to include an alert.
+    {% include 'components/alerts/alert.html' with type="warning" message="Something may be up... or down, who knows." %}
+    {% endcomment %}
+
+    <!-- Remove when ready to go live. -->
+    {% comment %} <div class="container m-auto mt-5 p-6 bg-slate-900 border-white rounded-lg">
+      <p class="text-lg text-center text-gray-500">Under Construction. Some features may not work correctly.</p>
+    </div> {% endcomment %}
+    <!-- Remove when ready to go live. -->
+    
+    <div id="mainBlock" class="container mx-auto py-16">
+    {% block content %}{% endblock %}
+    
+    </div>
+    
+  </body>
+</html>

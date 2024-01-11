@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 justify-items-center">
+        <figure>
+            <img class="rounded-lg border drop-shadow-md w-96" src="{{ MEDIA_URL }}{{product.image}}" alt="...">
+        </figure>
+        <div class="justify-self-start w-full">
+            <div class="rounded-lg drop-shadow-md backdrop-blur bg-white/70 w-full border">
+                <div class="grid grid-rows-2 p-12 justify-items-center">
+                    <div class="">
+                        <p class="text-slate-900 text-5xl harfont mb-2">{{ product.name }}</p>
+                        <p class="text-slate-900 mb-6">{{ product.description }}</p>
+                        <p class="text-slate-900 justify-self-end">${{ product.price }}/jar</p>
+                        <div class="grid grid-cols-3 justify-items-center">
+                            <div class=""></div>
+                            <div class=""></div>
+                            <div class="">
+                                <form class="" action="", method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary justify-self-end" name="product_id" value={{product.id}}>Add to cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% if product.bundles.all|length > 0 %}
+                    <div class="mt-12 border p-4">
+                        <p class="text-slate-900">This product can be found in the following bundles:</p>
+                        <ul>
+                        {% for bundle in product.bundles.all %}
+                            <li><a href={% url 'bundle_page' bundle.id %} class="text-slate-700 hover:underline hover:text-slate-600">{{ bundle.name }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

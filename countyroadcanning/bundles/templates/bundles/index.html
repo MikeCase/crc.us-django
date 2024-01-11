@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container mb-4">
+        <p class="h1 harfont">Bundles</p>
+    </div>
+    <div class="container">
+    {% for bundle in bundles %}
+    <div class="card w-96 bg-base-100 shadow-xl">
+        <figure><img src="" alt="image" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">{{ bundle.name }}</h2>
+          <p>{{ bundle.description }}</p>
+            {% for product in bundle.products.all %}
+                <p class="card-text">{{ product.name }}</p>
+            {% endfor %}
+          <div class="card-actions justify-end">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
