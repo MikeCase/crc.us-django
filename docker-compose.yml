@@ -27,6 +27,6 @@ services:
       depends_on:
         - "django"
 
-  networks:
-    traefik_default:
-      external: true
+networks:
+  traefik_default:
+    external: true
