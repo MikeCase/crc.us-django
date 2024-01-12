@@ -16,6 +16,9 @@ services:
           - "traefik.http.routers.crcdev.rule=Host(`crc.splaq.us`)"
           - "traefik.http.routers.crcdev.entrypoints=web"
 
+        networks:
+          - traefik_default
+
     mediaserver:
       build: ./nginx
       ports:
