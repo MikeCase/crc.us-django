@@ -15,7 +15,9 @@ import os
 from pathlib import Path
 import environ
 
-env = environ.Env()
+env = environ.Env(
+    ALLOWED_HOSTS=(list, [])
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +34,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', True)
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1']
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -129,7 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -142,8 +144,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = 'mediafiles/'
-MEDIA_URL = 'media/'
+MEDIA_ROOT = '/app/countyroadcanning/mediafiles/'
+MEDIA_URL = '/media/'
 # STORAGES = {
 #     'staticfiles': {
 #         'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',

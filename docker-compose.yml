@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+    django_app:
+        build: ./countyroadcanning
+
+        image: crcus:latest
+        ports:
+            - 5050:8000
+        volumes:
+            - type: bind
+              source: .
+              target: /app/
+
+        labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.crcdev.rule=Host(`crc.splaq.us`)"
+          - "traefik.http.routers.crcdev.entrypoints=web"
+
+    mediaserver:
+      build: ./nginx
+      ports:
+        - "3678:80"
+      volumes:
+        - type: bind
+          source: ./countyroadcanning/mediafiles/
+          target: /app/mediafiles
+      depends_on:
+        - "django"
+
+  networks:
+    traefik_default:
+      external: true
